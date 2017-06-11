@@ -76,7 +76,7 @@ namespace CustomerLinkedListApp
             }
         }
 
-         public void SearchList(string x)
+        public void SearchList(string x)
         {
             int count = 0;
             Node n = startnode;
@@ -179,6 +179,36 @@ namespace CustomerLinkedListApp
                         n.handle = n.handle.handle;
                     }
             }
-    }
 
+        public void UpdateCust(int x)
+        {
+            Console.WriteLine("Please enter a date of purchase:");
+            string date = Console.ReadLine();
+
+            Console.WriteLine("Please enter a purchase amount to be added to total:");
+            int amount = Convert.ToInt32(Console.ReadLine());
+
+            Node n = startnode;
+
+            while(n != null)
+            {
+                if(n.info.Number == x)
+                {
+                    n.info.PurchDate = date;
+                    n.info.TotalPurch = n.info.TotalPurch + amount;
+
+                    Console.Write(n.info.Number + " ");
+                    Console.Write(n.info.Company + " ");
+                    Console.Write(n.info.Contact + " ");
+                    Console.Write(n.info.City + " ");
+                    Console.Write(n.info.State + " ");
+                    Console.Write(n.info.PurchDate + " ");
+                    Console.Write(n.info.TotalPurch);
+                    Console.Write("\n");
+                }
+
+                n = n.handle;
+            }
+        }
+    }
 }

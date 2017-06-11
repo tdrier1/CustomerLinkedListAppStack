@@ -18,7 +18,8 @@ namespace CustomerLinkedListApp
             Console.WriteLine("2: Search By Company Name");
             Console.WriteLine("3: Add A Customer to List");
             Console.WriteLine("4: Delete A Customer from List");
-            Console.WriteLine("5: Exit");
+            Console.WriteLine("5: Update A Customer Sales Record");
+            Console.WriteLine("6: Exit");
             Console.WriteLine("++++++++++++++++++++++++++");
             int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -43,6 +44,16 @@ namespace CustomerLinkedListApp
                 customerlist.DisplayList();
                 int x = Convert.ToInt32(Console.ReadLine());
                 customerlist.DeleteCust(x);
+                customerlist.DisplayList();
+                customerlist.WriteList();
+            }
+
+            if(choice == 5)
+            {
+                Console.WriteLine("Please enter a customer number to update: \n");         
+                customerlist.DisplayList();
+                int x = Convert.ToInt32(Console.ReadLine());
+                customerlist.UpdateCust(x);
                 customerlist.DisplayList();
                 customerlist.WriteList();
             }
