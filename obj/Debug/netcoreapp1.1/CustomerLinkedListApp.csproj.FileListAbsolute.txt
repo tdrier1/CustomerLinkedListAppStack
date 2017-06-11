@@ -1,0 +1,8 @@
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\bin\Debug\netcoreapp1.1\CustomerLinkedListApp.deps.json
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\bin\Debug\netcoreapp1.1\CustomerLinkedListApp.runtimeconfig.json
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\bin\Debug\netcoreapp1.1\CustomerLinkedListApp.runtimeconfig.dev.json
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\bin\Debug\netcoreapp1.1\CustomerLinkedListApp.dll
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\bin\Debug\netcoreapp1.1\CustomerLinkedListApp.pdb
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\obj\Debug\netcoreapp1.1\CustomerLinkedListApp.AssemblyInfo.cs
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\obj\Debug\netcoreapp1.1\CustomerLinkedListApp.dll
+c:\Users\tdrie\Desktop\VSCodeProjects\CustomerLinkedListApp\obj\Debug\netcoreapp1.1\CustomerLinkedListApp.pdb
