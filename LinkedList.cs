@@ -65,14 +65,7 @@ namespace CustomerLinkedListApp
 
             while(n != null)
             {
-                Console.Write(n.info.Number + " ");
-                Console.Write(n.info.Company + " ");
-                Console.Write(n.info.Contact + " ");
-                Console.Write(n.info.City + " ");
-                Console.Write(n.info.State + " ");
-                Console.Write(n.info.PurchDate + " ");
-                Console.Write(n.info.TotalPurch);
-                Console.Write("\n");
+                Console.WriteLine("{0, -10} {1, -10}  {2, -10} {3, -10} {4, -10} {5, -15} {6}", n.info.Number, n.info.Company, n.info.Contact, n.info.City, n.info.State, n.info.PurchDate, n.info.TotalPurch);
 
                 n = n.handle;
             }
@@ -87,14 +80,7 @@ namespace CustomerLinkedListApp
             {
                 if(n.info.Company == x)
                 {
-                    Console.Write(n.info.Number + " ");
-                    Console.Write(n.info.Company + " ");
-                    Console.Write(n.info.Contact + " ");
-                    Console.Write(n.info.City + " ");
-                    Console.Write(n.info.State + " ");
-                    Console.Write(n.info.PurchDate + " ");
-                    Console.Write(n.info.TotalPurch);
-                    Console.Write("\n");
+                    Console.WriteLine("{0, -10} {1, -10}  {2, -10} {3, -10} {4, -10} {5, -15} {6}", n.info.Number, n.info.Company, n.info.Contact, n.info.City, n.info.State, n.info.PurchDate, n.info.TotalPurch);
                     count++;
                 }
 
@@ -187,7 +173,7 @@ namespace CustomerLinkedListApp
         public void UpdateCust(int x)
         {
             Console.WriteLine("Please enter a date of purchase:");
-            string date = Console.ReadLine();
+            string date = Validation.DateInput();
 
             Console.WriteLine("Please enter a purchase amount to be added to total:");
             int amount = Convert.ToInt32(Console.ReadLine());
@@ -201,14 +187,7 @@ namespace CustomerLinkedListApp
                     n.info.PurchDate = date;
                     n.info.TotalPurch = n.info.TotalPurch + amount;
 
-                    Console.Write(n.info.Number + " ");
-                    Console.Write(n.info.Company + " ");
-                    Console.Write(n.info.Contact + " ");
-                    Console.Write(n.info.City + " ");
-                    Console.Write(n.info.State + " ");
-                    Console.Write(n.info.PurchDate + " ");
-                    Console.Write(n.info.TotalPurch);
-                    Console.Write("\n");
+                    Console.WriteLine("{0, -10} {1, -10}  {2, -10} {3, -10} {4, -10} {5, -15} {6}", n.info.Number, n.info.Company, n.info.Contact, n.info.City, n.info.State, n.info.PurchDate, n.info.TotalPurch);
                 }
 
                 n = n.handle;

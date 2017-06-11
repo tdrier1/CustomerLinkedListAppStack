@@ -1,4 +1,4 @@
-722,Apple,Dan,Lansing,MI,N/A,0
+722,Apple,Dan,Lansing,MI,04/11/2016,77
 335,Flappy,Bird,Oregon,OR,01/19/2017,155
 442,Gary,Hammel,Dansville,MI,3/11/2015,44.21
 322,Jimbo,Sally,Mason,MI,5/12/2001,4.11

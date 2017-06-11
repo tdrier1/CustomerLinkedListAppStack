@@ -6,12 +6,15 @@ namespace CustomerLinkedListApp
     {
         static void Main(string[] args)
         {
+            bool run = true;
+
+            do
+            {
             LinkedList customerlist = new LinkedList();
 
             customerlist.CreateLinkedList();
 
-            Console.WriteLine("CUSTOMER LIST ");
-            Console.WriteLine("\n");
+            Console.WriteLine("Customer Mgmt System");
             Console.WriteLine("Please select an option: ");
             Console.WriteLine("-------------------------");
             Console.WriteLine("1: View Sorted Customer List");
@@ -21,42 +24,69 @@ namespace CustomerLinkedListApp
             Console.WriteLine("5: Update A Customer Sales Record");
             Console.WriteLine("6: Exit");
             Console.WriteLine("++++++++++++++++++++++++++");
-            int choice = Convert.ToInt32(Console.ReadLine());
+            int choice = Validation.MenuInput();
 
-            if(choice == 1)
+            switch(choice)
             {
-                customerlist.DisplayList();
+                case 1:
+                {   Console.WriteLine("Here is our customer list:");
+                    Console.WriteLine("++++++++++++++++++++++++++++");
+                    Console.WriteLine("Cust No.    Company     Contact     City    State    Last Purch Date.  Total Sales($)");
+                    Console.WriteLine("-------------------------------------------------------------------------------------");
+                    customerlist.DisplayList();
+                    run = Validation.Cont();
+                    break;
+                }
+                case 2:
+                {
+                    Console.WriteLine("Please enter a company name: ");
+                    string x = Console.ReadLine();
+                    Console.WriteLine("Cust No.    Company     Contact     City    State    Last Purch Date.  Total Sales($)");
+                    Console.WriteLine("-------------------------------------------------------------------------------------");
+                    customerlist.SearchList(x);
+                    run = Validation.Cont();
+                    break;
+                }
+                case 3:
+                {
+                    customerlist.NewCust();
+                    customerlist.WriteList();
+                    run = Validation.Cont();
+                    break;
+                }
+                case 4:
+                {
+                    Console.WriteLine("Please enter a number to delete: \n");         
+                    customerlist.DisplayList();
+                    int x = Convert.ToInt32(Console.ReadLine());
+                    customerlist.DeleteCust(x);
+                    Console.WriteLine("Cust No.    Company     Contact     City    State    Last Purch Date.  Total Sales($)");
+                    Console.WriteLine("-------------------------------------------------------------------------------------");
+                    customerlist.DisplayList();
+                    customerlist.WriteList();
+                    run = Validation.Cont();
+                    break;
+                }
+                case 5:
+                {
+                    Console.WriteLine("Please enter a customer number to update: \n");         
+                    customerlist.DisplayList();
+                    int x = Convert.ToInt32(Console.ReadLine());
+                    customerlist.UpdateCust(x);
+                    Console.WriteLine("Cust No.    Company     Contact     City    State    Last Purch Date.  Total Sales($)");
+                    Console.WriteLine("-------------------------------------------------------------------------------------");
+                    customerlist.DisplayList();
+                    customerlist.WriteList();
+                    run = Validation.Cont();
+                    break;
+                }
+                case 6:
+                {
+                    run = false;
+                    break;
+                }
             }
-            if(choice == 2)
-            {
-                Console.WriteLine("Please enter a company name: ");
-                string x = Console.ReadLine();
-                customerlist.SearchList(x);
-            }
-            if(choice == 3)
-            {
-                customerlist.NewCust();
-                customerlist.WriteList();
-            }
-            if(choice == 4)
-            {
-                Console.WriteLine("Please enter a number to delete: \n");         
-                customerlist.DisplayList();
-                int x = Convert.ToInt32(Console.ReadLine());
-                customerlist.DeleteCust(x);
-                customerlist.DisplayList();
-                customerlist.WriteList();
-            }
-
-            if(choice == 5)
-            {
-                Console.WriteLine("Please enter a customer number to update: \n");         
-                customerlist.DisplayList();
-                int x = Convert.ToInt32(Console.ReadLine());
-                customerlist.UpdateCust(x);
-                customerlist.DisplayList();
-                customerlist.WriteList();
-            }
+        }while(run == true);
         }
     }
 }
