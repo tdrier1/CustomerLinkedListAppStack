@@ -59,6 +59,8 @@ namespace CustomerLinkedListApp
         }
         public void DisplayList()
         {
+            BubbleSortList();
+
             Node n = startnode;
 
             while(n != null)
@@ -133,6 +135,8 @@ namespace CustomerLinkedListApp
 
         public void WriteList()
         {
+            BubbleSortList();
+            
             using(var fs = new FileStream("customerdb.txt", FileMode.Truncate, FileAccess.Write))
             using (var sw = new System.IO.StreamWriter(fs))
             {
@@ -210,5 +214,24 @@ namespace CustomerLinkedListApp
                 n = n.handle;
             }
         }
+        public void BubbleSortList()
+        {
+            Node n, t, last;
+
+            for(last = null; last != startnode.handle; last = n)
+            {
+                for(n = startnode; n.handle != last; n = n.handle)
+                {
+                    t = n.handle;
+                    if(string.Compare (n.info.Company, t.info.Company, true) > 0)
+                    {
+                        Customer temp = n.info;
+                        n.info = t.info;
+                        t.info = temp;
+                    }
+                }
+            }
+        }
+
     }
 }
