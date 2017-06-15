@@ -14,13 +14,13 @@ namespace CustomerLinkedListApp
 
             customerlist.CreateLinkedList();
 
-            Console.WriteLine("Customer Mgmt System");
+            Console.WriteLine("Customer Mgmt System w/ Stack Implementation");
             Console.WriteLine("Please select an option: ");
             Console.WriteLine("-------------------------");
-            Console.WriteLine("1: View Sorted Customer List");
+            Console.WriteLine("1: View Customer List in Order Added");
             Console.WriteLine("2: Search By Company Name");
             Console.WriteLine("3: Add A Customer to List");
-            Console.WriteLine("4: Delete A Customer from List");
+            Console.WriteLine("4: Delete Newest Customer from List");
             Console.WriteLine("5: Update A Customer Sales Record");
             Console.WriteLine("6: Exit");
             Console.WriteLine("++++++++++++++++++++++++++");
@@ -56,10 +56,7 @@ namespace CustomerLinkedListApp
                 }
                 case 4:
                 {
-                    Console.WriteLine("Please enter a number to delete: \n");         
-                    customerlist.DisplayList();
-                    int x = Convert.ToInt32(Console.ReadLine());
-                    customerlist.DeleteCust(x);
+                    customerlist.PopCust();
                     Console.WriteLine("Cust No.    Company     Contact     City    State    Last Purch Date.  Total Sales($)");
                     Console.WriteLine("-------------------------------------------------------------------------------------");
                     customerlist.DisplayList();

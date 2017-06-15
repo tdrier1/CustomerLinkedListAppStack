@@ -1,67 +1,53 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.IO;
 
 namespace CustomerLinkedListApp
 {
     class LinkedList
     {
-        private Node startnode;
+        private Node topnode;
 
         public LinkedList()
         {
-            startnode = null;
+            topnode = null;
         }
 
         public void CreateLinkedList()
         {
-            string line;
-
-            using(var fs = new FileStream("customerdb.txt", FileMode.Open, FileAccess.Read))
-            using (var sr = new System.IO.StreamReader(fs))
+            var db = File.ReadAllLines("customerdb.txt").Reverse();
+              
+            foreach(string line in db )
             {
-            
-                while((line = sr.ReadLine()) != null)
-                {
-                    Customer custobj = new Customer();
+            Customer custobj = new Customer();
 
-                    char[] delim = new char[] { ',' };
-                    string[] splits = line.Split(delim);
+            char[] delim = new char[] { ',' };
+            string[] splits = line.Split(delim);
 
-                    custobj.Number = Convert.ToInt32(splits[0]);
-                    custobj.Company = splits[1];
-                    custobj.Contact = splits[2];
-                    custobj.City = splits[3];
-                    custobj.State = splits[4];
-                    custobj.PurchDate = splits[5];
-                    custobj.TotalPurch = Convert.ToDouble(splits[6]);
+            custobj.Number = Convert.ToInt32(splits[0]);
+            custobj.Company = splits[1];
+            custobj.Contact = splits[2];
+            custobj.City = splits[3];
+            custobj.State = splits[4];
+            custobj.PurchDate = splits[5];
+            custobj.TotalPurch = Convert.ToDouble(splits[6]);
                     
-                    AddToList(custobj);
-                }
-            }
+            PushToList(custobj);
+            }        
         }
-        public void AddToList(Customer data)
+        public void PushToList(Customer data)
         {
-            Node n;
-            Node tempnode = new Node(data);
+            Node newnode = new Node(data);
 
-            if(startnode == null)
-            {
-                startnode = tempnode;
-                return;
-            }
-
-            n = startnode;
-
-            while(n.handle != null)
-                n = n.handle;
-                
-            n.handle = tempnode;
+            newnode.handle = topnode;
+            topnode = newnode;
         }
         public void DisplayList()
         {
-            BubbleSortList();
-
-            Node n = startnode;
+            Node n = topnode;
 
             while(n != null)
             {
@@ -70,11 +56,32 @@ namespace CustomerLinkedListApp
                 n = n.handle;
             }
         }
+        public void WriteList()
+        {
+            using(var fs = new FileStream("customerdb.txt", FileMode.Truncate, FileAccess.Write))
+            using (var sw = new System.IO.StreamWriter(fs))
+            {
+                Node n = topnode;
 
+                while(n != null)
+                {
+                    sw.Write(n.info.Number + ",");
+                    sw.Write(n.info.Company + ",");
+                    sw.Write(n.info.Contact + ",");
+                    sw.Write(n.info.City + ",");
+                    sw.Write(n.info.State + ",");
+                    sw.Write(n.info.PurchDate + ",");
+                    sw.Write(n.info.TotalPurch);
+                    sw.Write(Environment.NewLine);
+
+                    n = n.handle;
+                }
+            }
+        }
         public void SearchList(string x)
         {
             int count = 0;
-            Node n = startnode;
+            Node n = topnode;
 
             while(n != null)
             {
@@ -92,7 +99,6 @@ namespace CustomerLinkedListApp
                     Console.WriteLine("Company Not Found!");
                 }        
         }
-
         public void NewCust()
         {
                 Customer custobj = new Customer();
@@ -116,60 +122,20 @@ namespace CustomerLinkedListApp
                 custobj.TotalPurch = 0;
                 custobj.PurchDate = "N/A";
 
-                AddToList(custobj);
+                PushToList(custobj);
         }
-
-        public void WriteList()
+        public void PopCust()
         {
-            BubbleSortList();
-            
-            using(var fs = new FileStream("customerdb.txt", FileMode.Truncate, FileAccess.Write))
-            using (var sw = new System.IO.StreamWriter(fs))
-            {
-                Node n = startnode;
+                Customer custobj = new Customer();
 
-                while(n != null)
+                if(topnode == null)
                 {
-                    sw.Write(n.info.Number + ",");
-                    sw.Write(n.info.Company + ",");
-                    sw.Write(n.info.Contact + ",");
-                    sw.Write(n.info.City + ",");
-                    sw.Write(n.info.State + ",");
-                    sw.Write(n.info.PurchDate + ",");
-                    sw.Write(n.info.TotalPurch);
-                    sw.Write(Environment.NewLine);
-
-                    n = n.handle;
-                }
-            }
-        }
-
-        public void DeleteCust(int x)
-            {
-                if(startnode.info.Number == x)
-                {
-                    startnode = startnode.handle;
+                    Console.WriteLine("No customers!");
                     return;
                 }
-
-                Node n = startnode;
-
-                while(n.handle != null)
-                {
-                    if(n.handle.info.Number == x)
-                    break;
-                    n = n.handle;  
-                }
-                if(n.handle == null)
-                {
-                    Console.WriteLine("Not found!");
-                }
-                    else
-                    {
-                        n.handle = n.handle.handle;
-                    }
-            }
-
+                custobj = topnode.info;
+                topnode = topnode.handle;
+        }
         public void UpdateCust(int x)
         {
             Console.WriteLine("Please enter a date of purchase:");
@@ -178,7 +144,7 @@ namespace CustomerLinkedListApp
             Console.WriteLine("Please enter a purchase amount to be added to total:");
             int amount = Convert.ToInt32(Console.ReadLine());
 
-            Node n = startnode;
+            Node n = topnode;
 
             while(n != null)
             {
@@ -189,28 +155,8 @@ namespace CustomerLinkedListApp
 
                     Console.WriteLine("{0, -10} {1, -10}  {2, -10} {3, -10} {4, -10} {5, -15} {6}", n.info.Number, n.info.Company, n.info.Contact, n.info.City, n.info.State, n.info.PurchDate, n.info.TotalPurch);
                 }
-
                 n = n.handle;
             }
         }
-        public void BubbleSortList()
-        {
-            Node n, t, last;
-
-            for(last = null; last != startnode.handle; last = n)
-            {
-                for(n = startnode; n.handle != last; n = n.handle)
-                {
-                    t = n.handle;
-                    if(string.Compare (n.info.Company, t.info.Company, true) > 0)
-                    {
-                        Customer temp = n.info;
-                        n.info = t.info;
-                        t.info = temp;
-                    }
-                }
-            }
-        }
-
     }
 }
