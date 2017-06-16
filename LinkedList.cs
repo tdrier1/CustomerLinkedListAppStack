@@ -15,9 +15,10 @@ namespace CustomerLinkedListApp
         {
             topnode = null;
         }
-
-        public void CreateLinkedList()
+        public int CreateLinkedList()
         {
+            int i = 0;
+
             var db = File.ReadAllLines("customerdb.txt").Reverse();
               
             foreach(string line in db )
@@ -36,7 +37,9 @@ namespace CustomerLinkedListApp
             custobj.TotalPurch = Convert.ToDouble(splits[6]);
                     
             PushToList(custobj);
-            }        
+            i++;
+            }
+            return i;        
         }
         public void PushToList(Customer data)
         {
@@ -142,7 +145,7 @@ namespace CustomerLinkedListApp
             string date = Validation.DateInput();
 
             Console.WriteLine("Please enter a purchase amount to be added to total:");
-            int amount = Convert.ToInt32(Console.ReadLine());
+            double amount = Validation.DoubleInput();
 
             Node n = topnode;
 

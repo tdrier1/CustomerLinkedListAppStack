@@ -25,7 +25,6 @@ namespace CustomerLinkedListApp
 
             return choice;
         }
-
         public static string DateInput()
         {   
             DateTime date;
@@ -38,9 +37,18 @@ namespace CustomerLinkedListApp
             string output = date.ToString("MM/dd/yyyy");
 
             return output;
-            
         }
+        public static double DoubleInput()
+        {   
+            double input;
 
+                while(!Double.TryParse(Console.ReadLine(), out input))
+                {
+                    Console.Write("Please enter a valid dollar amount: ");
+                }                
+            
+            return input;
+        }
         public static bool Cont()
         {
             bool output = true;

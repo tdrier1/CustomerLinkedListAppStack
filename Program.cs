@@ -12,7 +12,7 @@ namespace CustomerLinkedListApp
             {
             LinkedList customerlist = new LinkedList();
 
-            customerlist.CreateLinkedList();
+            int i = customerlist.CreateLinkedList();
 
             Console.WriteLine("Customer Mgmt System w/ Stack Implementation");
             Console.WriteLine("Please select an option: ");
@@ -22,7 +22,8 @@ namespace CustomerLinkedListApp
             Console.WriteLine("3: Add A Customer to List");
             Console.WriteLine("4: Delete Newest Customer from List");
             Console.WriteLine("5: Update A Customer Sales Record");
-            Console.WriteLine("6: Exit");
+            Console.WriteLine("6: Count of Current Records");
+            Console.WriteLine("7: Exit");
             Console.WriteLine("++++++++++++++++++++++++++");
             int choice = Validation.MenuInput();
 
@@ -78,6 +79,11 @@ namespace CustomerLinkedListApp
                     break;
                 }
                 case 6:
+                {
+                    Console.WriteLine($"Count of Current Records: {i}");
+                    break;
+                }
+                case 7:
                 {
                     run = false;
                     break;

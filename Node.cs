@@ -6,7 +6,6 @@ namespace CustomerLinkedListApp
     {
         public Customer info;
         public Node handle;
-
         public Node (Customer data)
         {
             info = data;
